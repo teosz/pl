@@ -1,11 +1,26 @@
+import java.util.stream.IntStream;
 class EX01 {
   public static void main(String args[]) {
-    int[] a = {5,2,4,6,3,0};
-    int[] reversed = rev2(a);
-    for(int i=0;i<reversed.length;i++) {
-      System.out.print(reversed[i]+ " ");
-    }
-    System.out.print("\n");
+    int n = 4;
+    int factorial = IntStream.rangeClosed(2, n).reduce(1, (x, y) -> x * y);
+    long factorialRecursive = fact(n);
+    System.out.println(ak(4,2));
+    // System.out.println(factorialRecursive);
+
+  }
+  public static int ak(int m, int n) {
+    if(m == 0)
+      return m+1;
+    if(m > 0 && n==0)
+      return ak(m-1,1);
+    if(m > 0 && n>0)
+      return ak(m-1,ak(m,n-1));
+    return (n-1);
+  }
+  public static long fact(int n) {
+    if(n == 0 || n == 1)
+      return 1;
+    return n*fact(n-1);
   }
   public static void rev1(int a[]) {
     for(int i=0;i<a.length/2;i++) {
